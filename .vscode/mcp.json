@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "poc-recorder": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "poc-recorder-mcp"]
+    }
+  }
+}

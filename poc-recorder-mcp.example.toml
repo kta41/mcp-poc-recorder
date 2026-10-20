@@ -1,0 +1,59 @@
+# PoC Recorder MCP configuration
+# Place this file as poc-recorder-mcp.toml in the working directory, or globally at
+# ~/.config/poc-recorder-mcp/config.toml. Environment variables always override these values.
+
+[workspace]
+# Optional directories containing reusable JSON scenario definitions (`*.scenario.json`).
+scenario_roots = [
+  "/home/user/project/scenarios"
+]
+
+[recorder]
+# Default viewport dimensions (pixels).
+# Env overrides: POC_RECORDER_MCP_WIDTH, POC_RECORDER_MCP_HEIGHT
+width = 1440
+height = 900
+
+# Default output frame rate for GIF/MP4 transcoding.
+# Env override: POC_RECORDER_MCP_FPS
+fps = 15
+
+# Inject animated virtual cursor and click ripples into recorded pages.
+# Env override: POC_RECORDER_MCP_SHOW_CURSOR=1
+show_cursor = true
+
+# Inject step caption HUD overlay when steps provide a `caption` field.
+# Env override: POC_RECORDER_MCP_SHOW_HUD=1
+show_hud = true
+
+# Auto-install Chromium via Playwright if missing at runtime.
+# Env override: POC_RECORDER_MCP_AUTO_INSTALL_BROWSER=1
+auto_install_browser = false
+
+[limits]
+# Maximum duration of a single recording session (seconds).
+# Env override: POC_RECORDER_MCP_RUN_TIMEOUT
+run_timeout_seconds = 180
+
+# Maximum number of steps allowed in a single choreography.
+# Env override: POC_RECORDER_MCP_MAX_STEPS
+max_steps = 100
+
+# Maximum concurrent browser recordings.
+# Env override: POC_RECORDER_MCP_MAX_CONCURRENT_RUNS
+max_concurrent_runs = 2
+
+[artifacts]
+# Default directory where generated MP4/GIF files are written when a relative filename is given.
+# Defaults to <cwd>/build/recordings. Env: POC_RECORDER_MCP_OUTPUT_DIR
+# output_dir = "/home/user/project/recordings"
+ttl_hours = 168
+max_files = 50
+
+[security]
+# Allow recording localhost / 127.0.0.1 / 0.0.0.0 services (enabled by default for PoC workflows).
+# Env override: POC_RECORDER_MCP_ALLOW_LOCALHOST=1
+allow_localhost = true
+
+# Optional allowlist of hostnames. Empty list permits any HTTP/HTTPS target.
+allowed_hosts = []
